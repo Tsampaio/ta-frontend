@@ -1,0 +1,82 @@
+.loginCtn {
+    background: linear-gradient(to bottom, #e3ffe7 0%, #d9e7ff 100%);
+    flex: 1 1;
+}
+
+.loginTitle {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.loginTitle i {
+    margin-right: 10px;
+}
+
+.loginCtn .loginCard {
+    margin-top: 70px;
+    padding: 30px 30px;
+}
+
+.col-3 .card {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.card form {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.col-3 a {
+    
+    display: inline-block;
+    font-size: 16px;
+}
+
+.loginCtn input {
+    width: 100%;
+}
+
+.loginCtn h3 a {
+    color: #000;
+}
+
+.loginError {
+    background-color: #ea8383;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+.loginError h1 {
+    font-size: 20px;
+}
+
+.loginExtraButtons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.loginSeparator {
+    margin: 0 20px;
+}
+
+.loginInput {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #cbcbd0;
+    box-shadow: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+@media(min-width: 500px) {
+    .loginCtn .loginCard {
+        margin-top: 70px;
+        padding: 30px 45px;
+    }
+}

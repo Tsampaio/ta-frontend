@@ -1,0 +1,11 @@
+.card.singleClassCtn .card-body {
+  padding: 5px 1.25rem; 
+}
+
+.singleClassCtn {
+  margin-bottom: 20px;
+}
+
+.courseCover {
+  width: 300px;
+} 

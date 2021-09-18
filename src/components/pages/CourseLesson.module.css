@@ -1,0 +1,282 @@
+.courseLesson {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+}
+
+.classesCol {
+    flex: 1 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.vp-center {
+    align-items: flex-start !important;
+}
+
+.courseLesson h1 {
+    font-size: 20px;
+    background-color: #9aacd5;
+    color: rgb(232, 232, 232);
+    padding: 10px 20px;
+    margin: 0;
+    color: #000;
+}
+
+.courseLesson .col-8 h1 {
+    background-color: orange;
+    text-align: center;
+    color: rgb(33, 35, 56);
+}
+
+.courseLesson .col-4 {
+    display: flex;
+    flex-direction: column;
+}
+
+.courseLesson .col-4,
+.courseLesson .col-8 {
+    padding: 0;
+}
+
+.courseCurriculum {
+    background-color: #f2f2f2;
+    margin: 0 0 30px;
+    padding: 5px 20px;
+    font-size: 16px;
+    border-bottom: 1px solid grey;
+}
+
+.lessonsCtn {
+    background: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.lesson {
+    background: #f0f0f0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.stripe {
+    background: #dcdcdc;
+}
+
+.lessonLink {
+    text-decoration: none;
+    color: rgb(33, 37, 41);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.lessonLink:hover {
+    text-decoration: none;
+}
+
+.lessonActiveCtn .lesson{
+    background-color: #596fa2;
+    
+}
+
+.lessonActiveCtn p {
+    color: #fff;
+}
+
+.lessonActive p {
+    font-weight: bold;
+}
+
+.lessonTime {
+    display: inline-block;
+}
+
+.lesson p {
+    margin: 0; 
+}
+
+.lesson i {
+    margin-right: 15px;
+}
+
+.lessonComplete {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    
+}
+
+.lessonComplete:hover {
+    cursor: pointer;
+}
+
+.lessonComplete i {
+    font-size: 20px;
+}
+
+.currentLessonTitle {
+    padding: 30px 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.currentLessonTitle i {
+    margin-right: 10px;
+}
+
+.currentLessonTitle p {
+    margin: 0;
+}
+
+.videoIframe {
+    background-color: lightblue;
+    margin: 0 auto 30px;
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.videoIframe .vp-center {
+    align-items: start !important;
+    color: blue !important;
+}
+
+.courseLinksCtn {
+    /* width: 350px; */
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    order: 1;
+}
+
+.courseLinksCtn > h1 i {
+    margin-right: 10px;
+}
+
+.courseLinksCtn.backup {
+    position: absolute;
+}
+
+.courseMainVideoCtn {
+    flex: 1 1;
+    height: auto;
+    width: 100%;
+}
+
+.nextPrevButtonsCtn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.nextPrevButtonsCtn a {
+    width: 50%;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.nextPrevButtonsCtn a:first-child {
+    border-right: 1px solid black;
+}
+
+.nextPrevButtonsCtn h1 {
+    background-color: #596fa2;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 5px;
+}
+
+@media(min-width: 769px) {
+    .courseLinksCtn {
+        order: 0;
+        width: 350px;
+        margin-bottom: 0px;
+    }
+
+    .nextPrevButtonsCtn h1 {
+        padding: 13px 5px;
+    }
+}
+
+/* @media only screen and (max-width: 1280px) {
+    iframe {
+        height: 600px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    iframe {
+        height: 530px;
+    }
+
+    .courseMainVideoCtn {
+        width: 100%;
+        height: 350px;
+    }
+
+    .courseMainVideoCtn > a {
+        display: none;
+    }
+
+    .courseLinksCtn {
+        width: 100%;
+        order: 1;
+    }
+} */
+
+/* @media only screen and (max-width: 768px) {
+
+    .videoIframe {
+        padding: 0;
+    }
+
+    .courseMainVideoCtn {
+        height: auto;
+    }
+
+    .lessonsCtn {
+        padding: 20px 0;
+    }
+
+    .currentLessonTitle {
+        padding: 30px 20px 15px;
+    }
+
+    .courseLinksCtn > h1 {
+        font-size: 22px;
+    }
+}  
+
+@media only screen and (max-width: 500px) {
+    iframe {
+        height: 210px;
+    }
+
+    .courseLinksCtn {
+        margin-top: 10px;
+    }
+
+    .courseLinksCtn > h1 {
+        font-size: 20px;
+    }
+
+    .courseCurriculum {
+        font-size: 18px;
+    }
+    
+}
+
+*/
+

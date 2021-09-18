@@ -1,0 +1,282 @@
+.secondHeader {
+  /* background-color: #002333; */
+  background-color: #537ddc;
+  /* padding: 35px 0; */
+  border-bottom: 1px solid #000;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.lock {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.secondHeader ul {
+  margin: 0;
+}
+
+.secondHeader ul li {
+  list-style: none;
+  display: inline-block;
+}
+
+.secondHeader ul a {
+  text-decoration: none;
+  color: #fff;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.secondHeader ul > li a:hover {
+ color: #00FF84;
+}
+
+.navMenuCtn {
+  /* width: 100%; */
+}
+
+.logo {
+  width: 153px;
+}
+
+.checkoutLink {
+  position: relative;
+}
+
+.checkoutLink.checkoutIcon {
+  padding-right: 20px;
+}
+
+.checkoutNumber {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
+
+.userAvatarNavCtn:hover {
+  cursor: pointer;
+}
+
+.userAvatarNav {
+  display: inline-block;
+  width: 36px;
+  border-radius: 50%;
+  transition: 0.5s all ease-in-out;
+}
+
+.userAvatarNav:hover {
+  box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.75);
+  
+}
+
+.mainNav {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainNav ul {
+  position: relative;
+}
+
+.navDropDown {
+  padding: 10px 0px;
+  position: absolute;
+  top: 73px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.75);
+  z-index: 2;
+}
+
+.secondHeader .navDropDown li {
+  display: block;
+}
+
+.secondHeader .navDropDown li a:hover{
+  color: rgb(85, 83, 255);
+}
+
+.navDropDown li a {
+  color: #000;
+}
+
+.navDropDown a i {
+  margin-right: 10px;
+}
+
+.hideDropDown {
+  display: none
+}
+
+.navMenuCtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: calc(100% + 200px);
+  z-index: 3;
+  display: none;
+}
+
+.navMenu {
+  background-color: white;
+  list-style: none;
+  padding: 0 15px;
+}
+
+.navMenu a {
+  display: inline-block;
+  width: 100%;
+}
+
+.navMenuCtn.navMenuActive {
+  display: block;
+  -webkit-box-shadow: -11px 15px 29px -10px rgba(0,0,0,0.75);
+  -moz-box-shadow: -11px 15px 29px -10px rgba(0,0,0,0.75);
+  box-shadow: -11px 15px 29px -10px rgba(0,0,0,0.75);
+}
+
+.mobileMenuDiv {
+  width: 70%;
+  height: calc(100% + 100px);
+  background-color: #fff;
+  position: absolute;
+  left: -300px;
+  transition: all 0.5s ease-in-out;
+  visibility: hidden;
+  z-index: 3;
+  top: 0;
+}
+
+.mobileMenuDiv.slide {
+  visibility: unset;
+  left: 0;
+}
+
+.navMenu li {
+  border-bottom: 1px solid #dcdee1;
+}
+
+.navMenu li:last-child {
+  border: none;
+}
+
+.navMenu a {
+    color: #002333;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+.desktopMenu {
+  display: none;
+}
+
+.mobileMenu {
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.mobileMenu .checkoutNumber {
+  top: 0px;
+  right: 10px;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.mobileMenu > a {
+  display: inline-block;
+  padding: 0 25px;
+}
+
+.mobileMenu > a i{
+  color: #fff;
+  font-size: 30px;
+}
+
+.mobileMenuPicCtn {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #fbfbf8;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.mobileMenuPicCtn img {
+    width: 64px;
+    margin-right: 20px;
+}
+
+.mobileMenuPicCtn h3 {
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.mobileMenuPicCtn p {
+  color: #000;
+  margin: 0
+}
+
+@media(min-width: 500px) {
+  .mobileMenuDiv {
+    width: 300px;
+  }
+}
+
+@media(min-width: 991px) {
+  .desktopMenu {
+    display: block;
+  }
+
+  .mobileMenu {
+    display: none;
+  }
+}
+
+/* @media only screen and (max-width: 991px) {
+  .mobileMenu {
+    color: #fff;
+    font-size: 30px;
+    display: inline-block;
+  }
+
+  .navMenu {
+    display: block;
+    width: 100%;
+  }
+
+  .desktopMenu {
+    display: none;
+  }
+} */
+
+/* @media only screen and (max-width: 500px) {
+
+  .mainNav img {
+    width: 170px;
+    display: inline-block;
+  }
+
+} */

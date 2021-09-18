@@ -1,0 +1,110 @@
+.popularCourses {
+  padding-top: 42px;
+  padding-bottom: 30px;
+  color: #333;
+  font-family: 'Roboto Slab';
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 700;
+}
+
+.popularCoursesCtn {
+  padding-top: 30px;
+  padding-bottom: 72px;
+}
+
+.homeCounter {
+  padding: 170px 0;
+  background-image: url('../../images/homeCounter.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  position: relative;
+}
+
+.homeCounter .col-3 {
+  border-right: 1px solid #fff;
+}
+
+.homeCounter .overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.homeCounterTitle {
+  color: #ffb606;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 60px;
+  font-family: 'Roboto';
+}
+
+.homeCounterSubTitle {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  font-family: 'Roboto';
+  text-transform: uppercase;
+}
+
+.homeObjectives {
+  padding: 90px 0 60px 0;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.homeObjectives .row {
+  margin-bottom: 30px;
+}
+
+.homeObjectivesMainTitle {
+  font-family: 'Roboto Slab', serif;
+  color: #333;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.homeObjectivesMainDescription {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #999;
+  margin-bottom: 70px;
+}
+
+.homeObjectives i {
+  color: #ffb606;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.homeObjectivesObjTitle {
+  color: #333;
+  font-family: 'Roboto Slab', serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+  margin: 4px 0 15px 0;
+}
+
+.homeObjectivesObjDescription {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #666;
+}
+
+@media (max-width: 500px) {
+  .popularCoursesCtn {
+    padding-top: 0;
+    padding-bottom: 50px;
+  }
+
+  .homeCounter {
+    padding: 80px 0;
+  }
+  .homeObjectives {
+    padding: 60px 0 60px 0;
+  }
+}

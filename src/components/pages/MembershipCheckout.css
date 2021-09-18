@@ -1,0 +1,78 @@
+.MembershipCheckoutCtn {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #f5f6f7;
+    flex: 1 1;
+}
+
+.paypal > h1 {
+    color: #0a2b4e;
+    font-weight: bold;
+}
+
+.paypal .MembershipTotal {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border: 1px solid #B5B5B5;
+    background-color: #FAFAFA;
+    border-radius: 5px;
+    padding: 20px 10px;
+    margin-top: 35px;
+}
+
+.discountCtn {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    display: flex;
+}
+
+.discountCtn input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 1px solid #cbcbd0;
+    box-shadow: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    height: 40px;
+    flex: 2 1;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.discountCtn button {
+    padding: 2px 10px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.membershipPay {
+    border-radius: 5px;
+    background-color: #39b982;
+    color: #fff;
+    margin-top: 20px;
+    transition: all 0.5s ease-in-out;
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.membershipCard {
+    padding: 20px 40px;
+}
+
+.membershipCheckoutTitle {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.membershipChargingTime {
+    text-align: right;
+    margin-top: 10px;
+}

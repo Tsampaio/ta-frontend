@@ -1,0 +1,314 @@
+.courseCtnHeader {
+  padding-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 45px;
+}
+
+.instructorPhoto {
+  border-radius: 50%;
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.coursePageTitle {
+  color: #333;
+  font-family: 'Roboto Slab';
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.courseInstructorCtn {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.courseInstructorCtn > div {
+  border-right: 1px solid rgb(238, 238, 238);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.courseInstructor {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.courseInstructorCtn h5 {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ccc;
+  margin-bottom: 0;
+  font-weight: 700;
+  line-height: 20px;
+  flex: 1 100%;
+}
+
+.courseInstructorCtn h6 {
+  color: #7a7a7a;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.reviews {
+  color: #7a7a7a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reviews i {
+  color: #ffb606;
+  font-size: 13px;
+}
+
+.buyCtn {
+  display: flex;
+  align-items: center;
+}
+
+.coursePagePrice {
+  color: #f24c0a;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-right: 20px;
+}
+
+.coursePageBuy {
+  background-color: #f24c0a;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 40px;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: 40px;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.coursePageBuy:hover {
+  background-color: #b94213;
+  text-decoration: none;
+  color: #fff;
+}
+
+.courseCtnBody {
+  text-align: center;
+}
+
+.courseIntro {
+  border: 1px solid rgb(255, 182, 6);
+  margin-bottom: 45px;
+  background-color: lightblue;
+}
+
+.courseOverview {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 30px;
+  color: rgb(51, 51, 51);
+  font-family: 'Roboto Slab';
+  text-align: left;
+}
+
+.courseDescription {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.courseDescription ul {
+  margin-left: 30px;
+}
+
+.courseClassItems {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-wrap: wrap;
+  /* border-top: 1px solid rgb(209, 209, 209); */
+  padding: 12px 10px;
+}
+
+.courseClassLecture {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #666;
+  text-align: left;
+  margin-right: 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.courseClassLecture i {
+  color: #ffb606;
+  font-size: 15px;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.courseClassTitle {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: baseline;
+}
+
+.courseClassTitle p {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0;
+}
+
+.courseClassTitle span {
+  font-size: 14px;
+  font-weight: 400;
+  display: inline-block;
+  line-height: 30px;
+  color: #999;
+}
+
+.courseFeatures h1 {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 30px;
+  color: rgb(51, 51, 51);
+  font-family: 'Roboto Slab';
+  margin-top: 20px;
+}
+
+.buyButton {
+  background-color: #4a4290;
+  display: inline-block;
+  padding: 10px 20px;
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+  font-weight: bold;
+  width: 60%;
+  color: white;
+  transition: all 0.5s ease-in-out;
+}
+
+.buyButton:hover {
+  background-color: #6a61b9;
+  color: white;
+}
+
+.card-body .buyLifetime {
+  background-color: #007bff;
+}
+
+.purchaseButtons .card-body .buyLifetime:hover {
+  background-color: #004c9c;
+}
+
+.buyLifetime.membershipPay {
+  margin-top: 0;
+  width: 160px;
+}
+
+.purchaseButtons .membershipPay:hover {
+  background-color: #2c9266;
+  color: #fff;
+  text-decoration: none;
+}
+
+.buyButton:hover {
+  text-decoration: none;
+}
+
+#membershipButton {
+  /* background-color: rgb(85, 83, 255);
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 20px;
+  width: 60%; */
+
+  margin-top: 0;
+}
+
+#membershipButton:hover {
+  text-decoration: none;
+}
+
+.purchaseButtons {
+  margin-bottom: 40px;
+}
+
+.purchaseButtons h1 {
+  font-size: 24px;
+}
+
+.membershipCardCtn {
+  box-shadow: -2px 7px 29px 0px rgba(0, 0, 0, 0.75);
+  border: none;
+}
+
+.card.membershipCardCtn .card-header {
+  background-color: #002333;
+  color: #fff;
+}
+
+.buyMembershipPrice,
+.buyCoursePrice {
+  display: block;
+}
+
+.curriculumCtn {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.curriculumCtn .card-body {
+  margin-bottom: 30px;
+}
+
+.courseCtn {
+  /* background-color: #f4f4f4; */
+  background: #e3ffe7;
+  background: linear-gradient(to bottom, #e3ffe7 0%, #d9e7ff 100%);
+  position: relative;
+  flex: 1 1;
+}
+
+.card .card-header {
+  background-color: rgb(0, 0, 0, 0.1);
+}
+
+.removePadding {
+  padding: 0;
+}
+
+.btnStart {
+  padding: 10px 12px;
+  display: inline-block;
+}
+
+iframe {
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  .courseClassLecture {
+    margin-right: 50px;
+  }
+}

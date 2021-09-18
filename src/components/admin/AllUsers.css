@@ -1,0 +1,39 @@
+.allUsersCtn {
+  flex: 1;
+  padding-top: 50px;
+}
+
+.allUsersCtn tr {
+  border-bottom: 1px solid black;
+}
+
+.allUsersCtn td,
+.allUsersCtn th {
+  padding: 15px 0;
+}
+
+.allUsersCtn th {
+  cursor: pointer;
+}
+
+.allUsersCtn td:first-child,
+.allUsersCtn th:first-child{
+  padding-left: 20px;
+}
+
+.allUsersTableDiv {
+  display: inline-block;
+}
+
+.allUsersTable {
+  padding: 30px 50px;
+  background-color: #fff;
+}
+
+.allUsersTable input {
+  margin-right: 10px;
+}
+
+.allUsersTable thead tr {
+  background-color: #999999;
+}
