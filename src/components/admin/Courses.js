@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { getCourses } from '../../actions/courses';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { saveFeaturedCoursesAction } from '../../actions/courses';
+import axios from 'axios';
 import './Courses.css';
 
 const Courses = () => {
@@ -18,7 +19,7 @@ const Courses = () => {
   const [courseState, setCourseSate] = useState([]);
 
   useEffect(() => {
-    if(!coursesLoaded) {
+    if (!coursesLoaded) {
       dispatch(getCourses());
     }
   }, [dispatch]);
@@ -34,7 +35,7 @@ const Courses = () => {
     setCourseSate(sortedCourses);
   }, [courses]);
 
-  const images = require.context('../../../../uploads/courses/', true);
+  // const images = require.context('../../../../uploads/courses/', true);
 
   const updateFeatureCourses = (i) => {
     console.log('Updating!!!');
@@ -51,13 +52,16 @@ const Courses = () => {
     setCourseSate(copyFeature);
   };
 
-  const allCourses = courseState.map((course, index) => {
+  const allCourses = courseState.map(async (course, index) => {
     let img = '';
-    try {
-      img = images(`./${course.tag}.jpg`);
-    } catch (error) {
-      img = images(`./default-course.jpg`);
-    }
+    // try {
+    //   img = images(`./${course.tag}.jpg`);
+    // } catch (error) {
+    //   img = images(`./default-course.jpg`);
+    // }
+
+    const data = await axios.get('/api/s3images');
+    img = data.image;
 
     return (
       <Draggable
@@ -118,7 +122,7 @@ const Courses = () => {
     items.splice(result.destination.index, 0, reorderedItem);
 
     for (let i = 0; i < items.length; i++) {
-      delete items[i].featuredPosition; 
+      delete items[i].featuredPosition;
       items[i].position = i;
     }
     setCourseSate(items);
@@ -142,36 +146,40 @@ const Courses = () => {
           <div className="row">
             <div className="col-12">
               {/* <div className="adminCourseTop"> */}
-                <h1>Courses</h1>
-                <div>
-                  <Button variant="outline-primary" onClick={saveFeaturedCourses} className="mr-4">
-                    Save Feature courses
-                  </Button>
-                  {/* {message ? <h3>{message}</h3> : null} */}
-                  <Button>
-                    <Link to="/admin/courses/create">New Course</Link>
-                  </Button>
-                </div>
+              <h1>Courses</h1>
+              <div>
+                <Button
+                  variant="outline-primary"
+                  onClick={saveFeaturedCourses}
+                  className="mr-4"
+                >
+                  Save Feature courses
+                </Button>
+                {/* {message ? <h3>{message}</h3> : null} */}
+                <Button>
+                  <Link to="/admin/courses/create">New Course</Link>
+                </Button>
               </div>
-                <DragDropContext onDragEnd={handleOnDragEnd}>
-                  <Droppable
-                    droppableId="coursesSequence"
-                    direction="horizontal"
-                    type="column"
+            </div>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+              <Droppable
+                droppableId="coursesSequence"
+                direction="horizontal"
+                type="column"
+              >
+                {(provided) => (
+                  <div
+                    className="row"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
                   >
-                    {(provided) => (
-                      <div
-                        className="row"
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                      >
-                        {allCourses}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
-                </DragDropContext>
-              {/* </div> */}
+                    {allCourses}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+            {/* </div> */}
             {/* </div> */}
           </div>
         </div>

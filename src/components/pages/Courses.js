@@ -7,6 +7,7 @@ import SecondHeader from '../partials/SecondHeader';
 import Loader from '../utils/Loader';
 import { Form } from 'react-bootstrap';
 import CourseCard from './CourseCard';
+import axios from 'axios';
 import './Courses.css';
 
 const Courses = () => {
@@ -36,15 +37,18 @@ const Courses = () => {
   }, [loading]);
 
   console.log(courses);
-  const images = require.context('../../../../uploads/courses/', true);
+  // const images = require.context('../../../../uploads/courses/', true);
 
-  const allCourses = stateCourses.map((course, index) => {
-    let img = '';
-    try {
-      img = images(`./${course.tag}.jpg`);
-    } catch (error) {
-      img = images(`./default-course.jpg`);
-    }
+  const allCourses = stateCourses.map(async (course, index) => {
+    // let img = '';
+    // try {
+    //   img = images(`./${course.tag}.jpg`);
+    // } catch (error) {
+    //   img = images(`./default-course.jpg`);
+    // }
+
+    const mydata = await axios.get('/api/s3images');
+    let img = mydata.image;
 
     // let img = images(`./${course.tag}.jpg`);
     // let img = `/images/${course.tag}.jpg`;

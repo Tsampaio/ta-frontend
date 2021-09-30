@@ -19,7 +19,7 @@ import { stateFromHTML } from 'draft-js-import-html';
 import './Admin.css';
 import './CourseUpdate.css';
 
-const CourseUpdate = () => {
+const CourseUpdate = async () => {
   // console.log(auth);
 
   const dispatch = useDispatch();
@@ -281,19 +281,23 @@ const CourseUpdate = () => {
     }
   };
 
-  const images = require.context('../../../../uploads/courses/', true);
-  let img = '';
-  try {
-    img = images(`./${data && data.tag}.jpg`);
-  } catch (error) {
-    img = images(`./default-course.jpg`);
-  }
+  // const images = require.context('../../../../uploads/courses/', true);
+  // let img = '';
+  // try {
+  //   img = images(`./${data && data.tag}.jpg`);
+  // } catch (error) {
+  //   img = images(`./default-course.jpg`);
+  // }
   // if( data && data.tag ) {
   //   img = images(`./${data && data.tag}.jpg`);
   // } else {
   //   img = images(`./default-course.jpg`);
   // }
-  let userPic = <img src={img.default} alt="my sf" className="courseCover" />;
+
+  // let userPic = <img src={img.default} alt="my sf" className="courseCover" />;
+
+  const mydata = await axios.get('/api/s3images');
+  let userPic = mydata.image;
 
   // console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
   // console.log(courseState);
@@ -354,7 +358,11 @@ const CourseUpdate = () => {
                 />
                 <br />
                 <label>Course Level</label>
-                <select name="courseLevel" onChange={updateCourse} value={courseState.courseLevel}>
+                <select
+                  name="courseLevel"
+                  onChange={updateCourse}
+                  value={courseState.courseLevel}
+                >
                   <option value="DEFAULT" disabled>
                     Level
                   </option>

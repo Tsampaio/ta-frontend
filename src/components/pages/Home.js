@@ -1,10 +1,12 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Header from '../partials/Header';
 import CourseCard from './CourseCard';
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCourses } from '../../actions/courses';
+import { getCourses, setCoursesImages } from '../../actions/courses';
 import styles from './Home.module.css';
+// import parse from 'html-react-parser';
+import axios from 'axios';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -12,27 +14,41 @@ const Home = () => {
   const courses = useSelector((state) => state.courses);
   const { coursesLoaded, all } = courses;
 
+  const [myImage, setMyImage] = useState([]);
+
   useEffect(() => {
     if (!coursesLoaded) {
       dispatch(getCourses());
     }
+    getImages();
   }, []);
 
-  console.log(courses);
+  const getImages = async () => {
+    const mydata = await axios.get('/api/s3CoursesImages');
+    console.log(mydata);
+    setMyImage(mydata.data.images);
+    dispatch(setCoursesImages(mydata.data.images));
+  };
+
+  // console.log(courses);
 
   const coursesFiltered =
-    all && all.length > 0 &&
+    all &&
+    all.length > 0 &&
     all.filter((course) => {
       return course.featured;
     });
 
-    coursesFiltered && coursesFiltered.length > 0 &&
+  coursesFiltered &&
+    coursesFiltered.length > 0 &&
     coursesFiltered.sort((a, b) => {
       return a.position - b.position;
     });
+  console.log(coursesFiltered);
 
   const allFeatured =
-  coursesFiltered && coursesFiltered.length > 0 &&
+    coursesFiltered &&
+    coursesFiltered.length > 0 &&
     coursesFiltered.map((course, i) => {
       return (
         <CourseCard
@@ -45,25 +61,41 @@ const Home = () => {
       );
     });
 
-  console.log(courses);
+  console.log('all featured are');
+  console.log(allFeatured);
 
   return (
     <Fragment>
       <Header />
       <div className="container">
-        
         <div className={styles.popularCoursesCtn}>
-        <Row>
-          <Col className="offset-1 offset-md-0 col-10">
-            <h3 className={styles.popularCourses}>Popular Courses</h3>
-          </Col>
-        </Row>
-          <div className="row">{allFeatured}</div>
+          <Row>
+            <Col className="offset-1 offset-md-0 col-10">
+              <h3 className={styles.popularCourses}>Popular Courses</h3>
+            </Col>
+          </Row>
+          {/* <div className="row">{allFeatured}</div> */}
+          <Row>
+            {/* {courses &&
+              courses.coursesImages.length > 0 &&
+              courses.coursesImages.map((image) => (
+                <img src={image.imageBase64} alt="my course" />
+              ))} */}
+            {allFeatured}
+          </Row>
         </div>
       </div>
       <div className={styles.homeCounter}>
         <div className={styles.overlay}></div>
         <div className="container">
+          <Row>
+            {/* {parse(myImage)} */}
+            {/* <img src={myImage} alt="Hello" /> */}
+            {/* {myImage.map((image) => (
+              <img src={image} alt="Hello" />
+            ))}
+            <p>HERE</p> */}
+          </Row>
           <Row>
             <Col sm={12} md={3} className="mb-4">
               <h1 className={styles.homeCounterTitle}>3057</h1>
@@ -120,7 +152,7 @@ const Home = () => {
                 career
               </p>
             </Col>
-          
+
             <Col xs={6} md={4}>
               <i className="far fa-handshake"></i>
               <h5 className={styles.homeObjectivesObjTitle}>Get Hired</h5>

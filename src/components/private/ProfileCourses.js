@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import 'react-image-crop/dist/ReactCrop.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCoursesOwned, classWatchedUpdateReset } from '../../actions/courses';
+import {
+  getCoursesOwned,
+  classWatchedUpdateReset,
+} from '../../actions/courses';
 import { checkMembership } from '../../actions/membership';
 import Loader from '../utils/Loader';
 import CourseCard from '../pages/CourseCard';
 import './Profile.css';
+import axios from 'axios';
 
-function ProfileCourses() {
+async function ProfileCourses() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { loading, coursesOwnedLoaded } = auth;
@@ -16,14 +20,14 @@ function ProfileCourses() {
   const { classWatchedUpdated } = courses;
 
   useEffect(() => {
-    if(classWatchedUpdated) {
-      dispatch(classWatchedUpdateReset())
+    if (classWatchedUpdated) {
+      dispatch(classWatchedUpdateReset());
       dispatch(getCoursesOwned());
     }
-  }, [dispatch, classWatchedUpdated])
+  }, [dispatch, classWatchedUpdated]);
 
   useEffect(() => {
-    if(!loading && !coursesOwnedLoaded) {
+    if (!loading && !coursesOwnedLoaded) {
       dispatch(getCoursesOwned());
     }
 
@@ -38,10 +42,14 @@ function ProfileCourses() {
     }
   }, [auth]);
 
-  const coursesimage = require.context('../../../../uploads/courses/', true);
+  // const coursesimage = require.context('../../../../uploads/courses/', true);
+
+  const mydata = await axios.get('/api/s3images');
+  let img = mydata.image;
 
   const allCourses =
-    auth && auth.coursesOwned &&
+    auth &&
+    auth.coursesOwned &&
     auth.coursesOwned.map((course, index) => {
       return (
         <CourseCard

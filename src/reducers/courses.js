@@ -6,7 +6,7 @@ import {
   GET_COURSES,
   UPDATE_COURSE,
   FINISH_LESSON,
-  FINISH_LESSON_ERROR
+  FINISH_LESSON_ERROR,
 } from '../actions/types';
 import {
   COURSE_LIST_REQUEST,
@@ -17,19 +17,21 @@ import {
   DELETE_COURSE_VIDEOCLASS_FAIL,
   DELETE_COURSE_VIDEOCLASS_REQUEST,
   CLASS_WATCHED_UPDATED_REQUEST,
-  CLASS_WATCHED_UPDATED_RESET
+  CLASS_WATCHED_UPDATED_RESET,
+  SET_COURSES_IMAGES,
 } from '../contants/courseConstants';
 
 const initialState = {
   loading: true,
   data: null,
   all: [],
-  message: "",
+  message: '',
   classesWatched: null,
   classWatchedUpdated: false,
   courseProgress: 0,
-  coursesLoaded: false
-}
+  coursesLoaded: false,
+  coursesImages: [],
+};
 
 /* eslint import/no-anonymous-default-export: [2, {"allowAnonymousFunction": true}] */
 export default function (state = initialState, action) {
@@ -39,47 +41,47 @@ export default function (state = initialState, action) {
     case CLASS_WATCHED_UPDATED_REQUEST:
       return {
         ...state,
-        classWatchedUpdated: true
-      }
+        classWatchedUpdated: true,
+      };
     case CLASS_WATCHED_UPDATED_RESET:
       return {
         ...state,
-        classWatchedUpdated: false
-      }
+        classWatchedUpdated: false,
+      };
     case COURSE_LIST_REQUEST:
       return {
         ...state,
         loading: true,
-        all: []
-      }
+        all: [],
+      };
     case GET_LESSONS_WATCHED_REQUEST:
       return {
         ...state,
-        loading: true
-      }
+        loading: true,
+      };
     case GET_ONE_COURSE:
       // console.log("inside reducer get one course");
       return {
         ...state,
         loading: false,
         data: payload.course,
-        courseProgress: payload.courseProgress
-      }
+        courseProgress: payload.courseProgress,
+      };
     case GET_COURSES:
-      // console.log("Reducer ALL courses");
+      console.log('Reducer GET ALL courses');
       // console.log(payload);
       return {
         ...state,
         loading: false,
         all: payload.courses,
-        coursesLoaded: true
-      }
+        coursesLoaded: true,
+      };
     case UPDATE_COURSE:
       console.log(payload);
       return {
         ...state,
-        message: payload.message
-      }
+        message: payload.message,
+      };
     case FINISH_LESSON:
       // console.log(payload);
       // const updatedClasses = state.data.classes;
@@ -87,55 +89,56 @@ export default function (state = initialState, action) {
 
       return {
         ...state,
-        classesWatched: [
-          ...payload.userClasses
-        ],
-        courseProgress: payload.progress
-      }
+        classesWatched: [...payload.userClasses],
+        courseProgress: payload.progress,
+      };
     case FINISH_LESSON_ERROR:
       return {
         ...state,
         classesWatched: [],
-        courseProgress: 0
-      }
+        courseProgress: 0,
+      };
     case GET_LESSONS_WATCHED:
       return {
         ...state,
         loading: false,
-        classesWatched: [
-          ...payload.userClasses
-        ]
-      }
+        classesWatched: [...payload.userClasses],
+      };
     case GET_LESSONS_WATCHED_FAIL:
       return {
         ...state,
         loading: false,
-        classesWatched: []
-      }
+        classesWatched: [],
+      };
     case SAVE_FEATURED_COURSES_REQUEST:
     case DELETE_COURSE_VIDEOCLASS_REQUEST:
       return {
         ...state,
-        loading: true
-      }
+        loading: true,
+      };
     case SAVE_FEATURED_COURSES_SUCCESS:
       return {
         ...state,
         loading: false,
-        all: payload
-      }
+        all: payload,
+      };
     case SAVE_FEATURED_COURSES_FAIL:
     case DELETE_COURSE_VIDEOCLASS_FAIL:
       return {
         ...state,
-        message: payload
-      }
+        message: payload,
+      };
     case DELETE_COURSE_VIDEOCLASS_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: payload
-      }
+        data: payload,
+      };
+    case SET_COURSES_IMAGES:
+      return {
+        ...state,
+        coursesImages: payload,
+      };
     default:
       return state;
   }
