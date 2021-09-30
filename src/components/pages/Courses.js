@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import SecondHeader from '../partials/SecondHeader';
 import Loader from '../utils/Loader';
+import { getCoursesImages } from '../../actions/courses';
 import { Form } from 'react-bootstrap';
 import CourseCard from './CourseCard';
 import axios from 'axios';
@@ -21,6 +22,7 @@ const Courses = () => {
     if (!coursesLoaded) {
       dispatch(getCourses());
     }
+    dispatch(getCoursesImages());
   }, []);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const Courses = () => {
   console.log(courses);
   // const images = require.context('../../../../uploads/courses/', true);
 
-  const allCourses = stateCourses.map(async (course, index) => {
+  const allCourses = stateCourses.map((course, index) => {
     // let img = '';
     // try {
     //   img = images(`./${course.tag}.jpg`);
@@ -47,8 +49,8 @@ const Courses = () => {
     //   img = images(`./default-course.jpg`);
     // }
 
-    const mydata = await axios.get('/api/s3images');
-    let img = mydata.image;
+    // const mydata = await axios.get('/api/s3images');
+    // let img = mydata.image;
 
     // let img = images(`./${course.tag}.jpg`);
     // let img = `/images/${course.tag}.jpg`;
@@ -125,6 +127,7 @@ const Courses = () => {
               </div>
             ) : (
               allCourses
+              // <h1>Hello</h1>
             )}
           </div>
         </div>

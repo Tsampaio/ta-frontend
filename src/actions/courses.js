@@ -429,11 +429,30 @@ export const classWatchedUpdateReset = () => async (dispatch, getState) => {
   } catch (error) {}
 };
 
-export const setCoursesImages = (images) => async (dispatch) => {
+// export const setCoursesImages = (images) => async (dispatch) => {
+//   try {
+//     dispatch({
+//       type: SET_COURSES_IMAGES,
+//       payload: images,
+//     });
+//   } catch (error) {}
+// };
+
+export const getCoursesImages = () => async (dispatch, getState) => {
+  // if(localStorage.token) {
+  //     setAuthToken(localStorage.token);
+  // }
   try {
-    dispatch({
-      type: SET_COURSES_IMAGES,
-      payload: images,
-    });
+    const { courses } = getState();
+    const { coursesImages } = courses;
+
+    if (coursesImages.length < 1) {
+      const mydata = await axios.get('/api/s3CoursesImages');
+      console.log(mydata);
+      dispatch({
+        type: SET_COURSES_IMAGES,
+        payload: mydata.data.images,
+      });
+    }
   } catch (error) {}
 };

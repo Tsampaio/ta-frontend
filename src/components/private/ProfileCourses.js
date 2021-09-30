@@ -6,12 +6,13 @@ import {
   classWatchedUpdateReset,
 } from '../../actions/courses';
 import { checkMembership } from '../../actions/membership';
+import { getCoursesImages } from '../../actions/courses';
 import Loader from '../utils/Loader';
 import CourseCard from '../pages/CourseCard';
 import './Profile.css';
-import axios from 'axios';
+// import axios from 'axios';
 
-async function ProfileCourses() {
+function ProfileCourses() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { loading, coursesOwnedLoaded } = auth;
@@ -29,6 +30,7 @@ async function ProfileCourses() {
   useEffect(() => {
     if (!loading && !coursesOwnedLoaded) {
       dispatch(getCoursesOwned());
+      dispatch(getCoursesImages());
     }
 
     console.log('before check membership ');
@@ -44,8 +46,8 @@ async function ProfileCourses() {
 
   // const coursesimage = require.context('../../../../uploads/courses/', true);
 
-  const mydata = await axios.get('/api/s3images');
-  let img = mydata.image;
+  // const mydata = await axios.get('/api/s3images');
+  // let img = mydata.image;
 
   const allCourses =
     auth &&
@@ -62,6 +64,8 @@ async function ProfileCourses() {
         />
       );
     });
+
+  // return <h1>Hello</h1>;
 
   return (
     <div className="myCoursesRightCol">

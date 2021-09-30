@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Header from '../partials/Header';
 import CourseCard from './CourseCard';
 import { Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCourses, setCoursesImages } from '../../actions/courses';
+import { getCourses, getCoursesImages } from '../../actions/courses';
 import styles from './Home.module.css';
 // import parse from 'html-react-parser';
-import axios from 'axios';
+// import axios from 'axios';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,21 +14,18 @@ const Home = () => {
   const courses = useSelector((state) => state.courses);
   const { coursesLoaded, all } = courses;
 
-  const [myImage, setMyImage] = useState([]);
-
   useEffect(() => {
     if (!coursesLoaded) {
       dispatch(getCourses());
     }
-    getImages();
+    dispatch(getCoursesImages());
   }, []);
 
-  const getImages = async () => {
-    const mydata = await axios.get('/api/s3CoursesImages');
-    console.log(mydata);
-    setMyImage(mydata.data.images);
-    dispatch(setCoursesImages(mydata.data.images));
-  };
+  // const getImages = async () => {
+  //   const mydata = await axios.get('/api/s3CoursesImages');
+  //   console.log(mydata);
+  //   dispatch(getCoursesImages());
+  // };
 
   // console.log(courses);
 
