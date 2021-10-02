@@ -6,15 +6,20 @@ import Loader from '../utils/Loader';
 import './Admin.css';
 import axios from 'axios';
 
-async function AdminSidebar() {
+function AdminSidebar() {
   const auth = useSelector((state) => state.auth);
   const { loading } = auth;
 
-  let userPic = null;
+  let img = auth && auth.user && auth.user.image;
+
+  if (!img) {
+    img = '/uploads/users/default.png';
+  }
+  let userPic = <img src={img} className="userAvatar" alt="User Profile" />;
   // const images = require.context('../../images/', true);
   // const images = require.context('../../../../uploads/users/', true);
 
-  let img;
+  // let img;
 
   // if (auth && auth.user && auth.user._id && auth.user.hasProfilePic) {
   //   img = images(`./${auth.user._id}.jpg`);
@@ -24,8 +29,8 @@ async function AdminSidebar() {
   //   userPic = <img src={img.default} className="userAvatar" alt="user avatar" />
   // }
 
-  const mydata = await axios.get('/api/s3images');
-  userPic = mydata.image;
+  // const mydata = await axios.get('/api/s3images');
+  // userPic = mydata.image;
 
   return (
     <div className="col-xl-2 col-lg-3 col-md-4 userLeftCol">

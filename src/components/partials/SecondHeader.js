@@ -4,14 +4,14 @@ import styles from './SecondHeader.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../images/telmo-academy1.png';
 import { loadCheckout } from '../../actions/courses';
-import { lastLoginAction } from '../../actions/auth';
+import { lastLoginAction, getUserImage } from '../../actions/auth';
 import { checkMembership } from '../../actions/membership';
 
 const SecondHeader = () => {
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
-  const { isAuthenticated, membershipLoaded, notification, user } = auth;
+  const { isAuthenticated, membershipLoaded, notification, user, token } = auth;
 
   const payment = useSelector((state) => state.payment);
   const { checkoutLoaded } = payment;
@@ -54,7 +54,7 @@ const SecondHeader = () => {
       ) {
         // console.log("dropMenu");
         // alert("You clicked outside of me!");
-        console.log("outside");
+        console.log('outside');
         setDropdown({
           open: false,
         });
@@ -89,11 +89,12 @@ const SecondHeader = () => {
   useEffect(() => {
     // console.log("loading check")
     // console.log(auth && auth.token)
-    if (auth && auth.token) {
+    if (token) {
       if (!membershipLoaded) {
-        dispatch(checkMembership(auth && auth.token));
+        dispatch(checkMembership(token));
       }
       dispatch(lastLoginAction());
+      dispatch(getUserImage());
     }
   }, [auth && auth.isAuthenticated]);
 
@@ -122,31 +123,26 @@ const SecondHeader = () => {
   let img = auth && auth.user && auth.user.image;
 
   if (!img) {
-    img = '/uploads/users/default.png';
+    img = '/logo192.png';
   }
 
   userPic = (
-    <img
-      src={img}
-      className={styles.userAvatarNav}
-      alt="user profile"
-    />
+    <img src={img} className={styles.userAvatarNav} alt="user profile" />
   );
-  
+
   const checkoutIcon = isAuthenticated ? (
-      <Link className={`${styles.checkoutLink} ${styles.checkoutIcon}`} to="/cart/checkout">
-        <i className="fa fa-shopping-cart"></i>
-        {payment &&
-        payment.checkout &&
-        payment.checkout.length > 0 ? (
-          <span className={styles.checkoutNumber}>
-            {payment &&
-              payment.checkout &&
-              payment.checkout.length}
-          </span>
-        ) : null}
-      </Link>
-  ) : null
+    <Link
+      className={`${styles.checkoutLink} ${styles.checkoutIcon}`}
+      to="/cart/checkout"
+    >
+      <i className="fa fa-shopping-cart"></i>
+      {payment && payment.checkout && payment.checkout.length > 0 ? (
+        <span className={styles.checkoutNumber}>
+          {payment && payment.checkout && payment.checkout.length}
+        </span>
+      ) : null}
+    </Link>
+  ) : null;
 
   return (
     <>
@@ -162,11 +158,13 @@ const SecondHeader = () => {
                 />
               </Link>
 
-              <div
-                className={styles.mobileMenu}
-              >
-                { checkoutIcon }
-                <i ref={burgerMenuIcon} className="fas fa-bars" onClick={() => handleDropdown(mobileMenu, setMobileMenu)}></i>
+              <div className={styles.mobileMenu}>
+                {checkoutIcon}
+                <i
+                  ref={burgerMenuIcon}
+                  className="fas fa-bars"
+                  onClick={() => handleDropdown(mobileMenu, setMobileMenu)}
+                ></i>
               </div>
               <ul className={styles.desktopMenu}>
                 <li>
@@ -181,7 +179,13 @@ const SecondHeader = () => {
                   <Link to="/membership">MEMBERSHIP</Link>
                 </li>
                 <li>
-                  <a href="https://blog.telmo.academy/" rel="noreferrer" target="_blank">BLOG</a>
+                  <a
+                    href="https://blog.telmo.academy/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    BLOG
+                  </a>
                 </li>
                 {isAuthenticated ? (
                   <div
@@ -225,7 +229,7 @@ const SecondHeader = () => {
                     </li>
                   </Fragment>
                 )}
-                <li>{ checkoutIcon }</li>
+                <li>{checkoutIcon}</li>
                 {isAuthenticated ? (
                   <li
                     ref={profileIcon}
@@ -257,7 +261,9 @@ const SecondHeader = () => {
         <div className={styles.mobileMenuPicCtn}>
           {userPic}
           <div>
-            <h3>Hey {user && user.name ? user.name.split(' ')[0] : 'guest'},</h3>
+            <h3>
+              Hey {user && user.name ? user.name.split(' ')[0] : 'guest'},
+            </h3>
             <p>Welcome back</p>
           </div>
         </div>
@@ -271,13 +277,28 @@ const SecondHeader = () => {
           {isAuthenticated ? (
             <>
               <li>
-                <Link to="/profile" onClick={() => handleDropdown(mobileMenu, setMobileMenu)}>Profile</Link>
+                <Link
+                  to="/profile"
+                  onClick={() => handleDropdown(mobileMenu, setMobileMenu)}
+                >
+                  Profile
+                </Link>
               </li>
               <li>
-                <Link to="/profile/courses" onClick={() => handleDropdown(mobileMenu, setMobileMenu)}>My Courses</Link>
+                <Link
+                  to="/profile/courses"
+                  onClick={() => handleDropdown(mobileMenu, setMobileMenu)}
+                >
+                  My Courses
+                </Link>
               </li>
               <li>
-                <Link to="/profile/billing" onClick={() => handleDropdown(mobileMenu, setMobileMenu)}>Billing</Link>
+                <Link
+                  to="/profile/billing"
+                  onClick={() => handleDropdown(mobileMenu, setMobileMenu)}
+                >
+                  Billing
+                </Link>
               </li>
               <li>
                 <Link to="/logout">Logout</Link>

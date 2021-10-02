@@ -45,8 +45,8 @@ export const getCourses = (courses) => async (dispatch) => {
       },
     });
 
-    console.log('The courses are');
-    console.log(res);
+    // console.log('The courses are');
+    // console.log(res);
 
     dispatch({
       type: GET_COURSES,

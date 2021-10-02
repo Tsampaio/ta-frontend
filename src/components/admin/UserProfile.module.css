@@ -1,34 +1,41 @@
 .adminCtn {
+  flex: 1 1;
+  background-color: #f4f4f4;
   padding: 50px;
 }
 
-.adminCtn > .row {
+.userDetailsRow {
   padding: 20px 0;
 }
 
 .adminCtn table {
-  table-layout: fixed ;
-  width: 100% ;
+  table-layout: fixed;
+  width: 100%;
 }
 .adminCtn td {
-  width: 20% ;
+  width: 20%;
 }
 
 .adminCtn th {
   background-color: #999999;
 }
 
-.adminCtn td, .adminCtn th {
+.adminCtn td,
+.adminCtn th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+
+.userImage {
+  max-width: 100%;
 }
 
 tr:nth-child(odd) {
   background-color: #dddddd;
 }
 
-.card.userCard {
+.userCard {
   padding: 20px 50px;
   display: flex;
   justify-content: flex-start;
@@ -53,7 +60,6 @@ tr:nth-child(odd) {
 .card.userCard td {
   width: auto;
 }
-
 
 .card.userCard i {
   cursor: pointer;

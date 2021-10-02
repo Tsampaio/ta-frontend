@@ -13,9 +13,14 @@ import {
   ACCOUNT_ACTIVATION,
   GET_COURSES_OWNED,
   COURSE_ACCESS,
-  AUTH_ERROR
+  AUTH_ERROR,
 } from '../actions/types';
-import { USER_DETAILS_REQUEST, USER_LAST_LOGIN_FAIL, USER_LAST_LOGIN_SUCCESS } from '../contants/userConstants';
+import {
+  USER_DETAILS_REQUEST,
+  USER_LAST_LOGIN_FAIL,
+  USER_LAST_LOGIN_SUCCESS,
+  SET_USER_IMAGE,
+} from '../contants/userConstants';
 import {
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
@@ -26,14 +31,14 @@ import {
   REGISTER_REQUEST,
   FORGOT_PASSWORD,
   FORGOT_PASSWORD_REQUEST,
-  FORGOT_PASSWORD_FAIL
+  FORGOT_PASSWORD_FAIL,
 } from '../contants/authConstants';
 import {
   CHECK_MEMBERSHIP,
   CHECK_MEMBERSHIP_REQUEST,
   CANCEL_MEMBERSHIP,
   RESUBSCRIBE_MEMBERSHIP,
-  CANCEL_MEMBERSHIP_REQUEST
+  CANCEL_MEMBERSHIP_REQUEST,
 } from '../contants/membershipConstants';
 
 const initialState = {
@@ -48,11 +53,11 @@ const initialState = {
   coursesProgress: [],
   coursesOwnedLoaded: false,
   membership: {
-    active: false
+    active: false,
   },
   membershipLoaded: false,
-  buttonLoading: false
-}
+  buttonLoading: false,
+};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
@@ -60,7 +65,6 @@ export default function (state = initialState, action) {
   // console.log("inside auth reducers");
   // console.log( type );
   if (payload) {
-
     // console.log("-------------CHANGING MESSAGE----------")
     // console.log(type)
     // console.log( payload.message );
@@ -73,8 +77,8 @@ export default function (state = initialState, action) {
     case RESET_PASSWORD_REQUEST:
       return {
         ...state,
-        loading: true
-      }
+        loading: true,
+      };
     case USER_LOADED:
       return {
         ...state,
@@ -82,16 +86,16 @@ export default function (state = initialState, action) {
         user: payload.user,
         token: payload.token,
         active: payload.active,
-        loading: false
-      }
+        loading: false,
+      };
     case USER_GUEST:
       return {
         ...state,
         token: null,
         isAuthenticated: null,
         user: null,
-        loading: false
-      }
+        loading: false,
+      };
     case REGISTER_FAIL:
     case REGISTER_SUCCESS:
     case FORGOT_PASSWORD:
@@ -101,13 +105,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         notification: payload,
-        loading: false
-      }
+        loading: false,
+      };
     case RESET_NOTIFICATION: {
       return {
-      ...state,
-      notification: {}
-      }
+        ...state,
+        notification: {},
+      };
     }
     case LOGIN_SUCCESS:
       return {
@@ -117,67 +121,67 @@ export default function (state = initialState, action) {
         message: payload.message,
         user: payload.user,
         active: payload.user.active,
-        loading: false
-      }
+        loading: false,
+      };
     case LOGIN_FAIL:
       return {
         ...state,
         notification: payload,
-        loading: false
-      }
+        loading: false,
+      };
     // case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGOUT_FAIL:
     case LOGOUT:
       return {
-        ...initialState
-      }
+        ...initialState,
+      };
     case UPDATE_USER_ERROR:
       return {
         ...state,
-        notification: payload
-      }
+        notification: payload,
+      };
     case USER_LAST_LOGIN_FAIL:
       return {
         ...state,
-        message: payload
-      }
+        message: payload,
+      };
     case EMAIL_ACTIVATION:
     case ACCOUNT_ACTIVATION:
     case ACCOUNT_ACTIVATION_FAIL:
       return {
         ...state,
-        active: "active",
-        message: payload.message
-      }
+        active: 'active',
+        message: payload.message,
+      };
     case GET_COURSES_OWNED:
       return {
         ...state,
         coursesOwned: payload.courses,
         coursesProgress: payload.coursesProgress,
-        coursesOwnedLoaded: true
-      }
+        coursesOwnedLoaded: true,
+      };
     case COURSE_ACCESS:
       return {
         ...state,
-        courseAcces: payload.courses
-      }
+        courseAcces: payload.courses,
+      };
     case CHECK_MEMBERSHIP_REQUEST:
       return {
         ...state,
-        membershipLoaded: false
-      }
+        membershipLoaded: false,
+      };
     case CHECK_MEMBERSHIP:
       return {
         ...state,
         membership: payload,
-        membershipLoaded: true 
-      }
+        membershipLoaded: true,
+      };
     case CANCEL_MEMBERSHIP_REQUEST:
       return {
         ...state,
-        buttonLoading: true
-      }
+        buttonLoading: true,
+      };
     case CANCEL_MEMBERSHIP:
       return {
         ...state,
@@ -185,31 +189,40 @@ export default function (state = initialState, action) {
         membership: {
           ...state.membership,
           active: payload.active,
-          status: payload.status
-        }
-      }
+          status: payload.status,
+        },
+      };
     case RESUBSCRIBE_MEMBERSHIP:
       return {
         ...state,
         membership: {
           ...state.membership,
           active: payload.active,
-          status: payload.status
-        }
-      }
+          status: payload.status,
+        },
+      };
     case UPDATE_USER:
       return {
         ...state,
-        notification: payload
-      }
+        notification: payload,
+      };
     case USER_LAST_LOGIN_SUCCESS:
       return {
         ...state,
         user: {
           ...state.user,
-          lastLogin: payload
-        }
-      }
+          lastLogin: payload,
+        },
+      };
+    case SET_USER_IMAGE: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          image: payload,
+        },
+      };
+    }
     default:
       return state;
   }

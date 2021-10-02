@@ -14,7 +14,7 @@ const Courses = () => {
   const auth = useSelector((state) => state.auth);
   const { token } = auth;
   const courses = useSelector((state) => state.courses);
-  const { coursesLoaded } = courses;
+  const { coursesLoaded, coursesImages } = courses;
 
   const [courseState, setCourseSate] = useState([]);
 
@@ -35,8 +35,6 @@ const Courses = () => {
     setCourseSate(sortedCourses);
   }, [courses]);
 
-  // const images = require.context('../../../../uploads/courses/', true);
-
   const updateFeatureCourses = (i) => {
     console.log('Updating!!!');
     let copyFeature = [...courseState];
@@ -52,16 +50,10 @@ const Courses = () => {
     setCourseSate(copyFeature);
   };
 
-  const allCourses = courseState.map(async (course, index) => {
-    let img = '';
-    // try {
-    //   img = images(`./${course.tag}.jpg`);
-    // } catch (error) {
-    //   img = images(`./default-course.jpg`);
-    // }
-
-    const data = await axios.get('/api/s3images');
-    img = data.image;
+  const allCourses = courseState.map((course, index) => {
+    const theCourseImage = coursesImages.filter((image) => {
+      return image.tag === course.tag;
+    });
 
     return (
       <Draggable
@@ -81,7 +73,10 @@ const Courses = () => {
             <div className="cardBorder">
               <div className="courseThumbnail courseFeatured1">
                 <Link to={`/admin/courses/update/${course.tag}`}>
-                  <img src={img.default} alt="javascript" />
+                  {/* <img src={img.default} alt="javascript" /> */}
+                  {theCourseImage[0] && (
+                    <img src={theCourseImage[0].imageBase64} alt="my course" />
+                  )}
                 </Link>
               </div>
               <div className="courseTitleCtn">

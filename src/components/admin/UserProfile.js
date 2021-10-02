@@ -10,15 +10,17 @@ import {
   getUserPurchases,
   deleteUsersAction,
 } from '../../actions/admin';
-import axios from 'axios';
-// import './Courses.css'
-import './UserProfile.css';
 
-const Courses = async ({ match, history }) => {
+import styles from './UserProfile.module.css';
+
+const Courses = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const admin = useSelector((state) => state.admin);
-  const { userPurchases } = admin;
+
+  const auth = useSelector((state) => state.auth);
+
+  const { userPurchases, userDetails } = admin;
   const { _id, name, email, joined, active, purchases, courses, lastLogin } =
     admin.userDetails;
   // console.log(_id)
@@ -64,15 +66,24 @@ const Courses = async ({ match, history }) => {
 
   // const images = require.context('../../images/', true);
   // const images = require.context('../../../../uploads/users/', true);
-  let img;
   // try {
   //   img = images(`./${subPage}.jpg`);
   // } catch (error) {
   //   img = images(`./default.png`);
   // }
 
-  const mydata = await axios.get('/api/s3images');
-  img = mydata.image;
+  // const mydata = await axios.get('/api/s3images');
+  // img = mydata.image;
+
+  let img = userDetails && userDetails.image;
+
+  if (!img) {
+    img = '/logo192.png';
+  }
+
+  const userPic = (
+    <img className={styles.userImage} src={img} alt="user profile" />
+  );
 
   const date = new Date(joined);
   const userJoined = `${date.getDate()}/${
@@ -155,8 +166,8 @@ const Courses = async ({ match, history }) => {
         }
       }
     }
-    console.log('THE COURSES ARE');
-    console.log(courses);
+    // console.log('THE COURSES ARE');
+    // console.log(courses);
     setUserCoursesDetails(courses);
   };
 
@@ -205,8 +216,8 @@ const Courses = async ({ match, history }) => {
   console.log(userCourses);
   return (
     <>
-      <div className="adminCtn col-xl-10">
-        <div className="row">
+      <div className={`${styles.adminCtn} col-xl-10`}>
+        <div className={`${styles.userDetailsRow} row`}>
           <div className="col-2">
             {/* <img
               className="userAvatar"
@@ -214,31 +225,31 @@ const Courses = async ({ match, history }) => {
               style={{ width: '100%' }}
               alt="user avatar"
             /> */}
-            {img}
+            {userPic}
           </div>
           <div className="col-10">
-            <div className="card userCard">
-              <div className="userColDivider">
+            <div className={`card ${styles.userCard}`}>
+              <div className={styles.userColDivider}>
                 <h6>Name</h6>
                 <h4>{name}</h4>
               </div>
-              <div className="userColDivider">
+              <div className={styles.userColDivider}>
                 <h6>Email</h6>
                 <h4>{email}</h4>
               </div>
-              <div className="userColDivider">
+              <div className={styles.userColDivider}>
                 <h6>Profile Status</h6>
                 <h4>{active}</h4>
               </div>
-              <div className="userColDivider">
+              <div className={styles.userColDivider}>
                 <h6>Account Created</h6>
                 <h4>{userJoined}</h4>
               </div>
-              <div className="userColDivider">
+              <div className={styles.userColDivider}>
                 <h6>Last Login</h6>
                 <h4>{userLastLoginDate}</h4>
               </div>
-              <div className="userColDivider">
+              <div className={styles.userColDivider}>
                 <h6>Total Purchases</h6>
                 <h4>${purchases} USD</h4>
               </div>
@@ -269,7 +280,7 @@ const Courses = async ({ match, history }) => {
             <h4>User Courses</h4>
           </div>
           <div className="col-10">
-            <div className="card userCard">
+            <div className={`${styles.card} ${styles.userCard}`}>
               <table>
                 <tbody>{displayUserCourses}</tbody>
               </table>
@@ -285,7 +296,7 @@ const Courses = async ({ match, history }) => {
             </p>
           </div>
           <div className="col-10">
-            <div className="card userCard">
+            <div className={`${styles.card} ${styles.userCard}`}>
               <select defaultValue={'DEFAULT'} onChange={handleChange}>
                 <option value="DEFAULT" disabled>
                   Select course

@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect } from 'react';
 import AdminSidebar from './AdminSidebar';
 import UserProfile from './UserProfile';
 import Courses from './Courses';
@@ -14,20 +14,20 @@ import NewCoupon from './NewCoupon';
 import EditCoupon from './EditCoupon';
 import ActiveMemberships from './ActiveMemberships';
 
-const AdminCtn = ({match, history}) => {
+const AdminCtn = ({ match, history }) => {
   // console.log(match);
 
-  const auth = useSelector(state => state.auth);
-  const { active } = auth;
+  const auth = useSelector((state) => state.auth);
+  const { active, loading, isAuthenticated } = auth;
 
   useEffect(() => {
     if (active === 'notActive' && !auth.loading) {
-      console.log("inside redirect");
-      history.push("/activate");
-    } else if (auth && !auth.isAuthenticated && !auth.loading) {
-      history.push("/login");
+      console.log('inside redirect');
+      history.push('/activate');
+    } else if (!loading && !isAuthenticated && isAuthenticated !== null) {
+      history.push('/login');
     }
-  }, [auth, active]);
+  }, [active, loading, isAuthenticated]);
 
   return (
     <>
@@ -36,23 +36,42 @@ const AdminCtn = ({match, history}) => {
         <div className="container-fluid">
           <div className="row">
             <AdminSidebar />
-            { (match.params.page === "courses" && !match.params.subPage) ? <Courses /> : null }
-            { match.params.page === "courses" ? (match.params.subPage === "create" ? <CourseCreate /> : null) : null }
-            { match.params.page === "courses" ? (match.params.subPage === "update" ? <CourseUpdate /> : null) : null }
-            { match.params.page === "user" ? <UserProfile /> : null }
-            { match.params.page === "featureCourses" ? <FeatureCourses /> : null }
-            { match.params.page === "users" ? <AllUsers /> : null }
-            { match.params.page === "sales" ? <Sales /> : null }
-            { match.params.page === "coupons" && !match.params.subPage ? <Coupons /> : null }
-            { match.params.page === "coupons" ? (match.params.subPage === "new" ? <NewCoupon /> : null) : null }
-            { match.params.page === "coupons" ? (match.params.subPage === "edit" ? <EditCoupon /> :null) : null }
-            { match.params.page === "memberships" ? <ActiveMemberships /> : null }
-            
+            {match.params.page === 'courses' && !match.params.subPage ? (
+              <Courses />
+            ) : null}
+            {match.params.page === 'courses' ? (
+              match.params.subPage === 'create' ? (
+                <CourseCreate />
+              ) : null
+            ) : null}
+            {match.params.page === 'courses' ? (
+              match.params.subPage === 'update' ? (
+                <CourseUpdate />
+              ) : null
+            ) : null}
+            {match.params.page === 'user' ? <UserProfile /> : null}
+            {match.params.page === 'featureCourses' ? <FeatureCourses /> : null}
+            {match.params.page === 'users' ? <AllUsers /> : null}
+            {match.params.page === 'sales' ? <Sales /> : null}
+            {match.params.page === 'coupons' && !match.params.subPage ? (
+              <Coupons />
+            ) : null}
+            {match.params.page === 'coupons' ? (
+              match.params.subPage === 'new' ? (
+                <NewCoupon />
+              ) : null
+            ) : null}
+            {match.params.page === 'coupons' ? (
+              match.params.subPage === 'edit' ? (
+                <EditCoupon />
+              ) : null
+            ) : null}
+            {match.params.page === 'memberships' ? <ActiveMemberships /> : null}
           </div>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default memo(AdminCtn);
