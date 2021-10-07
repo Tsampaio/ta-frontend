@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: telmo87/ta-frontend
+    environment:
+      # NGINX-PROXY ENVIRONMENT VARIABLES: UPDATE ME
+      - VIRTUAL_HOST=app.telmo.academy
+      - VIRTUAL_PORT=3001
+      - LETSENCRYPT_HOST=app.telmo.academy
+      - LETSENCRYPT_EMAIL=telmoasampaio@gmail.com
+      # END NGINX-PROXY ENVIRONMENT VARIABLES
+    expose:
+      - 3001
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
