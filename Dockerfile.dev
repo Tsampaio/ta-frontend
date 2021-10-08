@@ -3,7 +3,12 @@ WORKDIR /app
 COPY package.json .
 RUN npm install
 COPY . .
+WORKDIR /app/client
+RUN npm install
 RUN npm run build
+WORKDIR /app
+CMD ["node", "server.js"]
+
 
 # FROM nginx
 # COPY --from=build /app/build /usr/share/nginx/html
