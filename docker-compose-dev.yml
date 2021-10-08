@@ -8,12 +8,12 @@ services:
     environment:
       # NGINX-PROXY ENVIRONMENT VARIABLES: UPDATE ME
       - VIRTUAL_HOST=app.telmo.academy
-      - VIRTUAL_PORT=3001
+      - VIRTUAL_PORT=5000
       - LETSENCRYPT_HOST=app.telmo.academy
       - LETSENCRYPT_EMAIL=telmoasampaio@gmail.com
       # END NGINX-PROXY ENVIRONMENT VARIABLES
     expose:
-      - 3001
+      - 5000
 
 networks:
   default:
